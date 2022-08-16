@@ -1,5 +1,7 @@
-string parent
-string child
+string parent_model
+string parent_link
+string child_model
+string child_link
 bool attach
 ---
 string response

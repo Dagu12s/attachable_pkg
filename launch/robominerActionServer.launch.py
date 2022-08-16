@@ -81,12 +81,7 @@ def generate_launch_description():
     attacher_bridge3 = Node(
                       package='ros_ign_bridge',
                       executable='parameter_bridge',
-                      arguments = ['/AttachableJoint/attach@std_msgs/msg/String@ignition.msgs.StringMsg'],
-                      output='screen')
-    attacher_bridge4 = Node(
-                      package='ros_ign_bridge',
-                      executable='parameter_bridge',
-                      arguments = ['/AttachableJoint/detach@std_msgs/msg/Empty@ignition.msgs.Empty'],
+                      arguments = ['/AttachableJoint@std_msgs/msg/String@ignition.msgs.StringMsg'],
                       output='screen')
                       
 
@@ -103,5 +98,4 @@ def generate_launch_description():
         attacher_bridge1,
         attacher_bridge2,
         attacher_bridge3,
-        attacher_bridge4,        
     ])

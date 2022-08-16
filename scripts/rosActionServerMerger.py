@@ -12,6 +12,7 @@ from rclpy.node import Node
 
 from attachable_pkg.action import AttachModel
 from std_msgs.msg import String
+from std_msgs.msg import Int32
 from std_msgs.msg import Empty
 from std_msgs.msg import Bool
 import attachable_pkg.mergeROSModels as merge
@@ -35,15 +36,28 @@ class AttachableJointActionServer(Node):
         self.contactSubscriberTopic = "/AttacherContact/touched"
         self.contactPublisher = self.create_publisher(String, self.contactPublisherTopic,10)
         self.contactSubscriber = self.create_subscription(Bool, self.contactSubscriberTopic, self.contactSubscriber_callack, 10)
+        
+        self.attachableJointErrorSubscriber = self.create_subscription(Int32, self.contactSubscriberTopic, self.errorSubscriber_callack, 10)
+
+        self.attachableJointPublisher = self.create_publisher(String, "/AttachableJoint" ,10)
 
         self.filename = "actual_model"
         self.msgToPublish = String()
 
-        self.error = False
+        self.error = 0
+
+        self.declare_parameter('urdf_update', False)
+        self.urdf_update = self.get_parameter('urdf_update').get_parameter_value().bool_value
+
             
 
     def contactSubscriber_callack(self, msg):
         self.contact = msg.data        
+
+
+    def errorSubscriber_callack(self, msg):
+        self.error = msg.data        
+
 
 
     def waitToResponse(self, timeout):
@@ -54,20 +68,10 @@ class AttachableJointActionServer(Node):
                 break
 
 
-    def attachModelIgnition(self):
-        attachableJointPublisher = self.create_publisher(String, "/AttachableJoint/attach" ,10)
-        parentSplit = self.parentLink.split("_")
-        childSplit = self.childLink.split("_")
-        parentModel = parentSplit[2] + "_" + parentSplit[3]
-        childModel =   childSplit[2] + "_" + childSplit[3]
-        self.msgToPublish.data = '[{}][{}][{}][{}]'.format(parentModel, self.parentLink, childModel, self.childLink)
-        attachableJointPublisher.publish(self.msgToPublish)
-
-
-    def dettachModelIgnition(self):
-        attachableJointPublisher = self.create_publisher(Empty, "/AttachableJoint/detach" ,10)
-        emptyMsg = Empty()
-        attachableJointPublisher.publish(emptyMsg)
+    def attachModelIgnition(self, request):
+        
+        self.msgToPublish.data = '[{}][{}][{}][{}][{}]'.format(self.parentModel, self.parentLink, self.childModel, self.childLink, request)
+        self.attachableJointPublisher.publish(self.msgToPublish)
 
 
     def restartStatePublisher(self):
@@ -110,57 +114,67 @@ class AttachableJointActionServer(Node):
         result = AttachModel.Result()
 
         feedback_msg = AttachModel.Feedback()
-        self.childLink = goal_handle.request.child
-        self.parentLink = goal_handle.request.parent
+        self.childLink = goal_handle.request.child_link
+        self.parentLink = goal_handle.request.parent_link
+        self.childModel = goal_handle.request.child_model
+        self.parentModel = goal_handle.request.parent_model
 
         self.get_logger().info("Executing Goal...")
-        print(1)
         if True == goal_handle.request.attach:
             #Check if the linsk are touching       
-            self.msgToPublish.data = '[{}][{}]'.format(self.parentLink, self.childLink)
-            #self.contactPublisher.publish(self.msgToPublish)
-            # self.waitToResponse(0.1)
+            self.msgToPublish.data = '[{}][{}][{}][{}]'.format(self.parentModel, self.parentLink, self.childModel, self.childLink)
+
+            self.contactPublisher.publish(self.msgToPublish)
+            
+            self.waitToResponse(0.5)
+            
+            self.msgToPublish.data = 'end'
+            self.contactPublisher.publish(self.msgToPublish)
 
             if self.contact:
 
                 self.get_logger().info("Links are in contact, Attaching models...")
 
                 #Add model in Gazebo Ingition
-                self.attachModelIgnition()
-
-                #Add model in URDF
-                #merge.addModel(self.filename, self.parentLink, self.childLink)#"AttachableLink_1_body_1", "AttachableLink_1_leg_1" )#
-
-                #Reestart State Publisher with the new URDF
-                #self.restartStatePublisher()
+                self.attachModelIgnition("attach")
                 
-                result.response = "True"
+                self.waitToResponse(0.5)
 
+                feedback_msg = self.error
+                if (self.error == 0) and (self.urdf_update == True):
+
+                    #Add model in URDF
+                    merge.addModel(self.filename, "body_1", "AttachableLink_1_body_1", "leg_1", "AttachableLink_1_leg_1") #"AttachableLink_1_body_1", "AttachableLink_1_leg_1" )#
+
+                    #Restart State Publisher with the new URDF
+                    self.restartStatePublisher()
+                    
+                    result.response = "True"
             else:
                 self.get_logger().info("Links are NOT in contact. End.")
                 result.response = "False"
-        
-
-            self.msgToPublish.data = 'data:"end"'
-            self.contactPublisher.publish(self.msgToPublish)
         
 
         else:
             #Detach Models in ignition
             self.get_logger().info("Detach models...")
 
-            self.dettachModelIgnition()
-            #Remove model in URDF
-            #merge.removeModel(self.filename, self.parentLink, self.childLink )
+            self.attachModelIgnition("detach")
+            
+            self.waitToResponse(0.5)
 
-            #Reset robot state publisher
-            #self.restartStatePublisher()
+            feedback_msg = self.error
+            if (self.error == 0) and (self.urdf_update == True) :
+                #Remove model in URDF
+                merge.removeModel(self.filename, "body_1", "AttachableLink_1_body_1", "leg_1", "AttachableLink_1_leg_1") #"AttachableLink_1_body_1", "AttachableLink_1_leg_1" )#
 
-            result.response = "True"
+                #Reset robot state publisher
+                self.restartStatePublisher()
+
+                result.response = "True"
 
         result.response = "Contact Done: " + result.response + " || Error: " + str(self.error)
-        goal_handle.succeed()
-        
+        goal_handle.succeed()        
 
         return result
 

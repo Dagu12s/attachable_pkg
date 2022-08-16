@@ -3,7 +3,7 @@
 
 <xacro:macro name="body" params="sufix ">
 
-  <link name='bodyBase_body_${sufix}'>    
+  <link name='bodyBase_${sufix}'>    
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
@@ -24,24 +24,24 @@
     </inertial>
   </link>
 
-  <link name="AttachableLink_1_body_${sufix}"/>
-  <joint name="AttachableLinkJoint_1_body_${sufix}" type="fixed">
-    <parent link="bodyBase_body_${sufix}"/>
-    <child link="AttachableLink_1_body_${sufix}"/>
+  <link name="AttachableLink_1_${sufix}"/>
+  <joint name="AttachableLinkJoint_1_${sufix}" type="fixed">
+    <parent link="bodyBase_${sufix}"/>
+    <child link="AttachableLink_1_${sufix}"/>
     <origin rpy="0 0 0" xyz="0.0 0 0.085"/>
   </joint>
   
-  <link name="AttachableLink_2_body_${sufix}"/>
-  <joint name="AttachableLinkJoint_2_body_${sufix}" type="fixed">
-    <parent link="bodyBase_body_${sufix}"/>
-    <child link="AttachableLink_2_body_${sufix}"/>
+  <link name="AttachableLink_2_${sufix}"/>
+  <joint name="AttachableLinkJoint_2_${sufix}" type="fixed">
+    <parent link="bodyBase_${sufix}"/>
+    <child link="AttachableLink_2_${sufix}"/>
     <origin rpy="-2.0944 0 0" xyz="0.0 0.0736 -0.0425"/>
   </joint>
   
-  <link name="AttachableLink_3_body_${sufix}"/>
-  <joint name="AttachableLinkJoint_3_body_${sufix}" type="fixed">
-    <parent link="bodyBase_body_${sufix}"/>
-    <child link="AttachableLink_3_body_${sufix}"/>
+  <link name="AttachableLink_3_${sufix}"/>
+  <joint name="AttachableLinkJoint_3_${sufix}" type="fixed">
+    <parent link="bodyBase_${sufix}"/>
+    <child link="AttachableLink_3_${sufix}"/>
     <origin rpy="2.0944 0 0" xyz="0.0 -0.0736 -0.0425"/>
   </joint>
   

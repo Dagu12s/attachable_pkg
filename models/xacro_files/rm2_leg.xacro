@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name= "leg" xmlns:xacro="http://wiki.ros.org/xacro">
   <xacro:macro name="leg" params="sufix ">
-    <link name="legLink_leg_${sufix}">
+    <link name="legLink_${sufix}">
       <visual>
         <origin rpy="0.0 0 0" xyz="0 0 0"/>
         <geometry>
@@ -21,7 +21,7 @@
     </link>
                       
     <!-- INCLUDE FRAME MOTOR 1 -->
-    <link name="fm1Link_leg_${sufix}">
+    <link name="fm1Link_${sufix}">
       <visual>
         <origin rpy="0 0 0" xyz="-0.0132 0 -0.01"/> <!--pose relative_to="j_l_fm1">-0.013863 -0.019021 -0.01165 0 0 0</pose-->
         <geometry>
@@ -42,9 +42,9 @@
     </link>
 
     <!-- JOINT LEG - FRAME MOTOR 1 -->
-    <joint name="j_l_fm1_leg_${sufix}" type="fixed">
-      <parent link="legLink_leg_${sufix}"/>
-      <child link="fm1Link_leg_${sufix}"/>
+    <joint name="j_l_fm1_${sufix}" type="fixed">
+      <parent link="legLink_${sufix}"/>
+      <child link="fm1Link_${sufix}"/>
       <axis xyz="0 1 0"/>
       <origin rpy="0 0 0" xyz="0.067490 0 0.009020"/>
       <!--pose relative_to="legLink">0.066412 0.019015 0.012752 0 0 0 </pose-->
@@ -53,7 +53,7 @@
     </joint>
 
     <!-- INCLUDE FRAME MOTOR 2 -->
-    <link name="fm2Link_leg_${sufix}">
+    <link name="fm2Link_${sufix}">
       <visual>
         <origin rpy="0.0 0 0" xyz="0.0125 0 -0.0134"/> 
         <!--pose relative_to="j_l_fm2">0.013867 0.001149 -0.011636 0 0 0</pose-->
@@ -76,17 +76,17 @@
     </link>
 
     <!-- JOINT LEG - FRAME MOTOR 2 -->
-    <joint name="j_l_fm2_leg_${sufix}" type="fixed">
+    <joint name="j_l_fm2_${sufix}" type="fixed">
       <axis xyz="0 1 0"/>
-      <parent link="legLink_leg_${sufix}"/>
-      <child link="fm2Link_leg_${sufix}"/>
+      <parent link="legLink_${sufix}"/>
+      <child link="fm2Link_${sufix}"/>
       <origin rpy="0 0 0" xyz="-0.057399 0.018994 0.012734"/>
       <!--pose relative_to="legLink">-0.057399 0.018994 0.012734 0 0 0</pose-->
     </joint>
 
 
     <!-- INCLUDE FRAME MOTOR 3 -->
-    <link name="fm3Link_leg_${sufix}">    
+    <link name="fm3Link_${sufix}">    
       <visual>
         <origin rpy="0 0 0" xyz="-0.0132 0 -0.0140"/> 
         <!--pose relative_to="j_l_fm3">-0.013867 -0.001149 -0.011636 0 0 0</pose-->
@@ -109,16 +109,16 @@
     </link>
 
     <!-- JOINT LEG - FRAME MOTOR 3 -->
-    <joint name="j_l_fm3_leg_${sufix}" type="fixed">
+    <joint name="j_l_fm3_${sufix}" type="fixed">
       <axis xyz="0 1 0"/>
-      <parent link="legLink_leg_${sufix}"/>
-      <child link="fm3Link_leg_${sufix}"/>
+      <parent link="legLink_${sufix}"/>
+      <child link="fm3Link_${sufix}"/>
       <origin rpy="0 0 0" xyz="-0.012 -0.018994 0.012734"/>
       <!--pose relative_to="legLink">-0.012388 -0.019006 0.012734 0 0 0</pose-->
     </joint>
 
     <!-- INCLUDE FRAME ACTUATOR 1 -->
-    <link name="fa1Link_leg_${sufix}">    
+    <link name="fa1Link_${sufix}">    
       <visual>
         <origin rpy="0 0 0" xyz="0.01 0 0.03"/> 
         <!--pose relative_to="j_fm1_fa1">0.009816 -0.0210 0.028349 0 0 0</pose-->
@@ -141,16 +141,16 @@
     </link>
 
     <!-- JOINT FRAME MOTOR 1 - FRAME ACTUATOR 1 -->
-    <joint name="j_fm1_fa1_leg_${sufix}" type="fixed">
+    <joint name="j_fm1_fa1_${sufix}" type="fixed">
       <axis xyz="0 1 0"/>
-      <parent link="fm1Link_leg_${sufix}"/>
-      <child link="fa1Link_leg_${sufix}"/>
+      <parent link="fm1Link_${sufix}"/>
+      <child link="fa1Link_${sufix}"/>
       <origin rpy="0 0 0" xyz="-0.03865 0 -0.03721"/>
       <!--pose relative_to="fm1Link"> -0.028265 0.021 -0.023721 0 0 0 </pose-->
     </joint>
 
     <!-- INCLUDE FRAME ACTUATOR 2 -->
-    <link name="fa2Link_leg_${sufix}">    
+    <link name="fa2Link_${sufix}">    
       <visual>
         <origin rpy="0 0 0" xyz="-0.01 0 0.025"/> 
         <!--pose relative_to="j_fm2_fa2">-0.009816 0.0015 0.028349 0 0</pose-->
@@ -173,17 +173,17 @@
     </link>
 
     <!-- JOINT FRAME MOTOR 2 - FRAME ACTUATOR 2 -->
-    <joint name="j_fm2_fa2_leg_${sufix}" type="fixed">
+    <joint name="j_fm2_fa2_${sufix}" type="fixed">
       <axis xyz="0 1 0"/>
-      <parent link="fm2Link_leg_${sufix}"/>
-      <child link="fa2Link_leg_${sufix}"/>
+      <parent link="fm2Link_${sufix}"/>
+      <child link="fa2Link_${sufix}"/>
       <origin rpy="0 0 0" xyz="0.03865 0.000851 -0.03721"/>-
       <!--pose relative_to="fm2Link"> 0.028265 0.000851 -0.023717 0 0 0 </pose-->
     </joint>
 
 
   <!-- INCLUDE FRAME ACTUATOR 3 -->
-    <link name="fa3Link_leg_${sufix}">    
+    <link name="fa3Link_${sufix}">    
       <visual>
         <origin rpy="0 0 0" xyz="0.01 0 0.025"/> 
         <!--pose relative_to="j_fm3_fa3">0.009816 -0.0015 0.028349 0 0</pose-->
@@ -206,16 +206,16 @@
     </link>
 
     <!-- JOINT FRAME MOTOR 3 - FRAME ACTUATOR 3 -->
-    <joint name="j_fm3_fa3_leg_${sufix}" type="fixed">
+    <joint name="j_fm3_fa3_${sufix}" type="fixed">
       <axis xyz="0 1 0"/>
-      <parent link="fm3Link_leg_${sufix}"/>
-      <child link="fa3Link_leg_${sufix}"/>
+      <parent link="fm3Link_${sufix}"/>
+      <child link="fa3Link_${sufix}"/>
       <origin rpy="0 0 0" xyz="-0.038265 -0.000851 -0.03721"/>
       <!--pose relative_to="fm3Link"> -0.028265 -0.000851 -0.023717 0 0 0</pose-->
     </joint>
 
      
-  <link name="AttachableLink_1_leg_${sufix}">
+  <link name="AttachableLink_1_${sufix}">
     <!--visual>
       <origin xyz="0 0 0.05" rpy= "0 0 0" />
       <geometry>
@@ -223,9 +223,9 @@
       </geometry>
     </visual-->
   </link>
-  <joint name="AttachableLinkJoint_1_leg_${sufix}" type="fixed">
-    <parent link="AttachableLink_1_leg_${sufix}"/>
-    <child link="legLink_leg_${sufix}"/>
+  <joint name="AttachableLinkJoint_1_${sufix}" type="fixed">
+    <parent link="AttachableLink_1_${sufix}"/>
+    <child link="legLink_${sufix}"/>
     <origin rpy="0 0 0" xyz="-0.005 0 0"/>
   </joint>
 
