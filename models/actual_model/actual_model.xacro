@@ -1,0 +1,7 @@
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="test">
+  <xacro:include filename="$(find attachable_pkg)/models/xacro_files/import_path.xacro"/>
+
+  <xacro:body sufix="body_1">  
+  </xacro:body>
+  
+  <xacro:leg sufix="leg_1"/><joint name="AttachableJoint_body_1_AttachableLink_1_body_1_leg_1_AttachableLink_1_leg_1" type="fixed"><parent link="AttachableLink_1_body_1"/><child link="AttachableLink_1_leg_1"/><origin rpy="0 0 0" xyz="0 0 0"/></joint></robot>
