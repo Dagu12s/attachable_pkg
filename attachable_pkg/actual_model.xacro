@@ -1,0 +1,70 @@
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+  <xacro:include filename="$(find attachable_pkg)/models/xacro_files/rm2_leg.xacro"/>
+  <xacro:body sufix="body_1"/>
+  <xacro:body sufix="body_2"/>
+  <joint name="AttachableJoint_body_1_AttachableLink_1_body_2_AttachableLink_1" type="fixed">
+    <parent link="AttachableLink_1"/>
+    <child link="AttachableLink_1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <xacro:leg sufix="leg_1"/>
+  <joint name="AttachableJoint_body_1_AttachableLink_2_leg_1_AttachableLink_1" type="fixed">
+    <parent link="AttachableLink_2"/>
+    <child link="AttachableLink_1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <xacro:body sufix="body_3"/>
+  <joint name="AttachableJoint_body_1_AttachableLink_3_body_3_AttachableLink_2" type="fixed">
+    <parent link="AttachableLink_3"/>
+    <child link="AttachableLink_2"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <xacro:leg sufix="leg_2"/>
+  <joint name="AttachableJoint_body_2_AttachableLink_2_leg_2_AttachableLink_1" type="fixed">
+    <parent link="AttachableLink_2"/>
+    <child link="AttachableLink_1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <xacro:body sufix="body_4"/>
+  <joint name="AttachableJoint_body_2_AttachableLink_3_body_4_AttachableLink_1" type="fixed">
+    <parent link="AttachableLink_3"/>
+    <child link="AttachableLink_1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <xacro:leg sufix="leg_3"/>
+  <joint name="AttachableJoint_body_3_AttachableLink_1_leg_3_AttachableLink_1" type="fixed">
+    <parent link="AttachableLink_1"/>
+    <child link="AttachableLink_1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <xacro:leg sufix="leg_4"/>
+  <joint name="AttachableJoint_body_3_AttachableLink_3_leg_4_AttachableLink_1" type="fixed">
+    <parent link="AttachableLink_3"/>
+    <child link="AttachableLink_1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <xacro:leg sufix="leg_5"/>
+  <joint name="AttachableJoint_body_4_AttachableLink_2_leg_5_AttachableLink_1" type="fixed">
+    <parent link="AttachableLink_2"/>
+    <child link="AttachableLink_1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <xacro:body sufix="body_5"/>
+  <joint name="AttachableJoint_body_4_AttachableLink_3_body_5_AttachableLink_1" type="fixed">
+    <parent link="AttachableLink_3"/>
+    <child link="AttachableLink_1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <xacro:leg sufix="leg_6"/>
+  <joint name="AttachableJoint_body_5_AttachableLink_2_leg_6_AttachableLink_1" type="fixed">
+    <parent link="AttachableLink_2"/>
+    <child link="AttachableLink_1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <xacro:leg sufix="leg_7"/>
+  <joint name="AttachableJoint_body_5_AttachableLink_3_leg_7_AttachableLink_1" type="fixed">
+    <parent link="AttachableLink_3"/>
+    <child link="AttachableLink_1"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+</robot>

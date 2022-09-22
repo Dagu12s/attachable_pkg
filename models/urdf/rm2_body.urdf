@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 <robot name="body" xmlns:xacro="http://wiki.ros.org/xacro">
 
-<xacro:macro name="body" params="sufix ">
 
-  <link name='bodyBase_${sufix}'>    
+  <link name='bodyBase_1'>    
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
@@ -21,30 +20,29 @@
     <inertial>
         <mass value = "1.8" />
         <inertia ixx="2.501" ixy="0" ixz="0" iyy="2.501" iyz="0.0" izz="5"/>
-    </inertial> 
+    </inertial>
   </link>
 
-  <link name="AttachableLink_1_${sufix}"/>
-  <joint name="AttachableLinkJoint_1_${sufix}" type="fixed">
-    <parent link="bodyBase_${sufix}"/>
-    <child link="AttachableLink_1_${sufix}"/>
+  <link name="AttachableLink_1_1"/>
+  <joint name="AttachableLinkJoint_1_1" type="fixed">
+    <parent link="bodyBase_1"/>
+    <child link="AttachableLink_1_1"/>
     <origin rpy="0 0 0" xyz="0.0 0 0.085"/>
   </joint>
   
-  <link name="AttachableLink_2_${sufix}"/>
-  <joint name="AttachableLinkJoint_2_${sufix}" type="fixed">
-    <parent link="bodyBase_${sufix}"/>
-    <child link="AttachableLink_2_${sufix}"/>
+  <link name="AttachableLink_2_1"/>
+  <joint name="AttachableLinkJoint_2_1" type="fixed">
+    <parent link="bodyBase_1"/>
+    <child link="AttachableLink_2_1"/>
     <origin rpy="-2.0944 0 0" xyz="0.0 0.0736 -0.0425"/>
   </joint>
   
-  <link name="AttachableLink_3_${sufix}"/>
-  <joint name="AttachableLinkJoint_3_${sufix}" type="fixed">
-    <parent link="bodyBase_${sufix}"/>
-    <child link="AttachableLink_3_${sufix}"/>
+  <link name="AttachableLink_3_1"/>
+  <joint name="AttachableLinkJoint_3_1" type="fixed">
+    <parent link="bodyBase_1"/>
+    <child link="AttachableLink_3_1"/>
     <origin rpy="2.0944 0 0" xyz="0.0 -0.0736 -0.0425"/>
   </joint>
   
-</xacro:macro>
 
 </robot>

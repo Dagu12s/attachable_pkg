@@ -20,24 +20,24 @@ from urllib import request
 
 from numpy import empty
 
-import rclpy
-from rclpy.action import ActionServer
-from rclpy.node import Node
+# import rclpy
+# from rclpy.action import ActionServer
+# from rclpy.node import Node
 
-from rm2_simulation.action import AttachModel
-from std_msgs.msg import String
-from std_msgs.msg import Empty
-from std_msgs.msg import Bool
-import mergeROSModels as merge
+# from rm2_simulation.action import AttachModel
+# from std_msgs.msg import String
+# from std_msgs.msg import Empty
+# from std_msgs.msg import Bool
+# import mergeROSModels as merge
 
-from rcl_interfaces.srv import SetParameters
-from rcl_interfaces.msg import Parameter
-from rcl_interfaces.msg import ParameterValue
+# from rcl_interfaces.srv import SetParameters
+# from rcl_interfaces.msg import Parameter
+# from rcl_interfaces.msg import ParameterValue
 
 
 
-filename = "../models/myfirst"
-filename2 = "../models/urdfcreated"
+# filename = "../models/myfirst"
+# filename2 = "../models/urdfcreated"
 
 # modelsList = ["body" , "leg"]
 # modelNames = [ "0", "0"]
@@ -85,12 +85,26 @@ filename2 = "../models/urdfcreated"
 # merge.removeModel(filename,  parentLinks, childLinks)
 print("hola")
 
-parentLinks = ["AttachableLink_1_body_1","AttachableLink_2_body_1","AttachableLink_3_body_1","AttachableLink_2_body_2","AttachableLink_3_body_2"]
-childLinks =  ["AttachableLink_1_leg_1","AttachableLink_1_leg_2","AttachableLink_1_body_2","AttachableLink_1_leg_3","AttachableLink_1_leg_4"]
+# parentLinks = ["AttachableLink_1_body_1","AttachableLink_2_body_1","AttachableLink_3_body_1","AttachableLink_2_body_2","AttachableLink_3_body_2"]
+# childLinks =  ["AttachableLink_1_leg_1","AttachableLink_1_leg_2","AttachableLink_1_body_2","AttachableLink_1_leg_3","AttachableLink_1_leg_4"]
 
-merge.createURDF2( filename2, parentLinks, childLinks)
+# merge.createURDF2( filename2, parentLinks, childLinks)
 
 
+
+
+# parentLinks = ['AttachableLink_1_body_1', 'AttachableLink_2_body_1', 'AttachableLink_3_body_1', 'AttachableLink_2_body_2', 'AttachableLink_3_body_2', 'AttachableLink_1_body_3', 'AttachableLink_3_body_3', 'AttachableLink_2_body_4', 'AttachableLink_3_body_4', 'AttachableLink_2_body_5', 'AttachableLink_3_body_5']
+# childLinks = ['AttachableLink_1_body_2', 'AttachableLink_1_leg_1', 'AttachableLink_2_body_3', 'AttachableLink_1_leg_2', 'AttachableLink_1_body_4', 'AttachableLink_1_leg_3', 'AttachableLink_1_leg_4', 'AttachableLink_1_leg_5', 'AttachableLink_1_body_5', 'AttachableLink_1_leg_6', 'AttachableLink_1_leg_7']
+# parentModels = ['body_1', 'body_1', 'body_1', 'body_2', 'body_2', 'body_3', 'body_3', 'body_4', 'body_4', 'body_5', 'body_5']
+# childModels = ['body_2', 'leg_1', 'body_3', 'leg_2', 'body_4', 'leg_3', 'leg_4', 'leg_5', 'body_5', 'leg_6', 'leg_7']
+
+parentLinks = ['AttachableLink_1', 'AttachableLink_2', 'AttachableLink_3', 'AttachableLink_2', 'AttachableLink_3', 'AttachableLink_1', 'AttachableLink_3', 'AttachableLink_2', 'AttachableLink_3', 'AttachableLink_2', 'AttachableLink_3']
+childLinks = ['AttachableLink_1', 'AttachableLink_1', 'AttachableLink_2', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1']
+parentModels = ['body_1', 'body_1', 'body_1', 'body_2', 'body_2', 'body_3', 'body_3', 'body_4', 'body_4', 'body_5', 'body_5']
+childModels = ['body_2', 'leg_1', 'body_3', 'leg_2', 'body_4', 'leg_3', 'leg_4', 'leg_5', 'body_5', 'leg_6', 'leg_7']
+
+
+merge.createURDF3("actual_model", parentModels, parentLinks, childModels, childLinks)
 
 # ================================================================================================================= 
 
@@ -236,3 +250,4 @@ merge.createURDF2( filename2, parentLinks, childLinks)
 
 # with open("myfirst2.urdf","w") as urdf_file:
 #     urdf_file.write(robot_desc)
+

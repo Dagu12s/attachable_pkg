@@ -18,10 +18,8 @@
     <plugin filename="libignition-gazebo-user-commands-system.so" name="ignition::gazebo::systems::UserCommands"></plugin>
     <plugin filename="libignition-gazebo-scene-broadcaster-system.so" name="ignition::gazebo::systems::SceneBroadcaster"></plugin>
 
-    <plugin filename="/home/david/workspace/src/ign-gazebo/examples/plugin/system_plugin/build/libAttachableJoint.so" name="attachable_joint::AttachableJoint">
-        <detachtopic>/box2/detach</detachtopic>
-        <attachtopic>/box2/attach</attachtopic>
-    </plugin>
+    <plugin filename="/home/david/workspace/src/ign-gazebo/examples/plugin/system_plugin/build/libAttachableJoint.so" name="attachable_joint::AttachableJoint"></plugin>
+        
 
     <!-- FLOOR -->
     <model name="ground_plane">
@@ -67,13 +65,7 @@
     </light>
 
     <!-- INCLUDE BODY Y PATAS -->
-    <model name="mod1">
-      <include>
-        <pose>0 0 0.45 0 0 0</pose> <!-- Z for mine-->
-        <uri>model://rm2_body</uri>
-        <name>mod1</name>
-      </include>
-    </model>
+  
       <!--
       <!- INCLUDE LEG 1 ->
       <include>
@@ -158,6 +150,34 @@
       </plugin> ->
     </model-->
 
+  <!--model name="mod1">
+      <include>
+        <pose>0 0 0.45 0 0 0</pose> <!- Z for mine->
+        <uri>model://rm2_body</uri>
+        <name>mod1</name>
+      </include>
+    </model-->
+
+        <model name="box0">
+      <pose>0 0 0.25 0 0 0</pose>
+      <link name="box_body">
+        <visual name="v1">
+          <geometry>
+            <box><size>0.5 0.5 0.5</size></box>
+          </geometry>
+          <material>
+            <diffuse>0.8 0.2 0.2 1</diffuse>
+            <specular>1.0 0 0 1</specular>
+          </material>
+        </visual>
+        <collision name="c1">
+          <geometry>
+            <box><size>0.5 0.5 0.5</size></box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
   
     <model name="box1">
       <pose>1 0 7 0 0 0</pose>
@@ -173,14 +193,14 @@
         </visual>
         <collision name="c1">
           <geometry>
-            <box><size>1 1 1</size></box>
+            <box><size>0.5 0.5 0.5</size></box>
           </geometry>
         </collision>
       </link>
     </model>
 
     <model name="box2">
-      <pose>1 1 8 0 0 0</pose>
+      <pose>0 0 8 0 0 0</pose>
       <link name="box_body">
         <visual name="v2">
           <geometry>
@@ -193,7 +213,7 @@
         </visual>
         <collision name="c2">
           <geometry>
-            <box><size>1 1 1</size></box>
+            <box><size>0.5 0.5 0.5</size></box>
           </geometry>
         </collision>
       </link>

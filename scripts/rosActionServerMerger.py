@@ -41,13 +41,15 @@ class AttachableJointActionServer(Node):
 
         self.attachableJointPublisher = self.create_publisher(String, "/AttachableJoint" ,10)
 
-        self.filename = "actual_model"
         self.msgToPublish = String()
 
         self.error = 0
 
         self.declare_parameter('urdf_update', False)
         self.urdf_update = self.get_parameter('urdf_update').get_parameter_value().bool_value
+
+        self.declare_parameter('urdf_file_name', "actual_model")
+        self.filename = self.get_parameter('urdf_file_name').get_parameter_value().string_value
 
             
 
@@ -127,7 +129,7 @@ class AttachableJointActionServer(Node):
             self.contactPublisher.publish(self.msgToPublish)
             
             self.waitToResponse(0.5)
-            
+
             self.msgToPublish.data = 'end'
             self.contactPublisher.publish(self.msgToPublish)
 
@@ -137,35 +139,35 @@ class AttachableJointActionServer(Node):
 
                 #Add model in Gazebo Ingition
                 self.attachModelIgnition("attach")
-                
-                self.waitToResponse(0.5)
+
+                # self.waitToResponse(0.5)
 
                 feedback_msg = self.error
                 if (self.error == 0) and (self.urdf_update == True):
-
+                    print(1)
                     #Add model in URDF
                     merge.addModel(self.filename, "body_1", "AttachableLink_1_body_1", "leg_1", "AttachableLink_1_leg_1") #"AttachableLink_1_body_1", "AttachableLink_1_leg_1" )#
-
+                    print(2)
                     #Restart State Publisher with the new URDF
                     self.restartStatePublisher()
-                    
+
                     result.response = "True"
             else:
                 self.get_logger().info("Links are NOT in contact. End.")
                 result.response = "False"
-        
 
         else:
             #Detach Models in ignition
             self.get_logger().info("Detach models...")
 
             self.attachModelIgnition("detach")
-            
-            self.waitToResponse(0.5)
 
+            # self.waitToResponse(0.5)
+        
             feedback_msg = self.error
             if (self.error == 0) and (self.urdf_update == True) :
                 #Remove model in URDF
+
                 merge.removeModel(self.filename, "body_1", "AttachableLink_1_body_1", "leg_1", "AttachableLink_1_leg_1") #"AttachableLink_1_body_1", "AttachableLink_1_leg_1" )#
 
                 #Reset robot state publisher

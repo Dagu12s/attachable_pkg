@@ -201,7 +201,8 @@ def createURDF3( filename,parentModels, parentLinks,childModels, childLinks):
 
     jointName = "AttachableJoint_" + parentModels[0] + "_" +  parentLinks[0] + "_" + childModels[0] + "_" + childLinks[0]
 
-    xacro_tree = (ROBOT.robot(xacrons("include",filename="import_path.xacro")))
+
+    xacro_tree = (ROBOT.robot(xacrons("include",filename="$(find attachable_pkg)/models/xacro_files/import_path.xacro")))
     
     print("111")
 
@@ -218,20 +219,32 @@ def createURDF3( filename,parentModels, parentLinks,childModels, childLinks):
 
     
     for i in range(1,len(parentLinks)):
+        print("===")
         print(i) 
-
-        parentSplit = parentLinks[i].split("_")
-        childSplit = childLinks[i].split("_")
-        parentmodel = parentSplit[2]
-        parentmodelsufix = parentSplit[3]
-        childmodel = childSplit[2]
-        childmodelsufix = childSplit[3]
+        print("pm = " + parentModels[i])
+        print("pl = " + parentLinks[i])
+        print("cm = " + childModels[i])
+        print("cl = " + childLinks[i])
+        print("===")
+        
+        # parentSplit = parentLinks[i].split("_")
+        # childSplit = childLinks[i].split("_")
+        # parentmodel = parentSplit[2]
+        # parentmodelsufix = parentSplit[3]
+        # childmodel = childSplit[2]
+        # childmodelsufix = childSplit[3]
+        
+        # parentSplit = parentModels[0].split("_")
+        # parentmodel = parentSplit[0]
+    
+        # childSplit = childModels[0].split("_")
+        # childmodel = childSplit[0]
         
         parentSplit = parentModels[i].split("_")
-        parentmodel = parentSplit[i]
+        parentmodel = parentSplit[0]
     
         childSplit = childModels[i].split("_")
-        childmodel = childSplit[i]
+        childmodel = childSplit[0]
 
 
         if (parentModels[i]) not in modelList:
@@ -241,10 +254,13 @@ def createURDF3( filename,parentModels, parentLinks,childModels, childLinks):
         if (childModels[i]) not in modelList:
                 xacro_tree.append(xacrons( childmodel, sufix = childModels[i]))
                 modelList.append(childModels[i])
-
+        
+        jointName = "AttachableJoint_" + parentModels[i] + "_" +  parentLinks[i] + "_" + childModels[i] + "_" + childLinks[i]
         xacro_tree.append(E.joint(NAME(jointName),TYPE("fixed"), E.parent(link=parentLinks[i]), E.child(link=childLinks[i]),
                      E.origin(rpy="0 0 0", xyz="0 0 0"))) 
 
+
+    print("Llega al final")
 
     with open(xacro_file,"wb") as open_file:
         open_file.write(etree.tostring(xacro_tree, pretty_print=True))

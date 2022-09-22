@@ -33,8 +33,9 @@
         <plugin filename="/home/david/workspace/src/ign-gazebo/examples/plugin/AttacherContact/build/libAttacherContact.so"
                 name="attacher_contact::AttacherContact">
           <time>0.001</time>
-           <enabled>true</enabled>
+          <enabled>true</enabled>
         </plugin>
+
         <gui fullscreen="0">
 
             <!-- 3D scene -->
