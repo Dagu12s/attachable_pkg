@@ -1,6 +1,6 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro" name="test">
   <xacro:include filename="$(find attachable_pkg)/models/xacro_files/import_path.xacro" />
 
-  <xacro:body sufix="body_1"/>  
-  
+  <!--xacro:body sufix="body_1"/-->  
+  <xacro:rm2_p sufix="rm2_1"/>
 </robot>

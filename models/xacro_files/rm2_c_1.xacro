@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<robot name="rm2_c_1" xmlns:xacro="http://wiki.ros.org/xacro">
+
+<xacro:macro name="rm2_c_1" params="sufix ">
+
+          <!-- Links -->
+        <link name="base_link_${sufix}"/>
+        <link name="l1::lLink_${sufix}"/>
+        <link name="l1::mLink_${sufix}"/>
+        <link name="l1::fLink_${sufix}"/>
+        <link name="l2::lLink_${sufix}"/>
+        <link name="l2::mLink_${sufix}"/>
+        <link name="l2::fLink_${sufix}"/>
+        <link name="l3::lLink_${sufix}"/>
+        <link name="l3::mLink_${sufix}"/>
+        <link name="l3::fLink_${sufix}"/>
+        <link name="sa1::aLink_${sufix}"/>
+        <link name="sa1::sbLink_${sufix}"/>
+        <link name="sa2::aLink_${sufix}"/>
+        <link name="sa2::sbLink_${sufix}"/>
+        <link name="sa3::aLink_${sufix}"/>
+        <link name="sa3::sbLink_${sufix}"/>
+        <link name="wa2::aLink_${sufix}"/>
+        <link name="wa2::wbLink_${sufix}"/>
+        <link name="wa3::aLink_${sufix}"/>
+        <link name="wa3::wbLink_${sufix}"/>
+        <link name="d_435_camera_${sufix}"/>
+        <link name="lidar_${sufix}"/>
+
+        <!-- Body joints -->
+        <joint name="j_b_l1" type="fixed">
+                <origin rpy="0 0 0" xyz="0.0035 0.024 0.0473"/>
+                <parent link="base_link_${sufix}"/>
+                <child link="l1::lLink_${sufix}"/>
+        </joint>
+
+        <joint name="j_b_l2" type="fixed">
+                <origin rpy="-2.0944 0 0" xyz="0.083 0.065 -0.0375"/>
+                <parent link="base_link_${sufix}"/>
+                <child link="l2::lLink_${sufix}"/>
+        </joint>
+
+        <joint name="j_b_l3" type="fixed">
+                <origin rpy="2.0944 0 0" xyz="0.083 -0.065 -0.0375"/>
+                <parent link="base_link_${sufix}"/>
+                <child link="l3::lLink_${sufix}"/>
+        </joint>
+
+        <joint name="j_l1_sa1" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0035 0.024 0.0473"/>
+                <parent link = "l1::fLink_${sufix}" />
+                <child link = "sa1::aLink_${sufix}" />
+        </joint>
+
+        <joint name="j_l2_sa2" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0035 0.024 0.0473"/>
+                <parent link = "l2::fLink_${sufix}" />
+                <child link = "sa2::aLink_${sufix}" />
+        </joint>
+
+        <joint name="j_l2_wa2" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0035 0.024 0.0473"/>
+                <parent link = "l2::fLink_${sufix}" />
+                <child link = "wa2::aLink_${sufix}" />
+        </joint>
+
+        <joint name="j_l3_sa3" type="fixed">-
+                <origin rpy = "0 0 0" xyz = "0.0035 0.024 0.0473"/>
+                <parent link = "l3::fLink_${sufix}" />
+                <child link = "sa3::aLink_${sufix}" />
+        </joint>
+
+        <joint name="j_l3_wa3" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0035 0.024 0.0473"/>
+                <parent link = "l3::fLink_${sufix}" />
+                <child link = "wa3::aLink_${sufix}" />
+        </joint>
+
+        <joint name="j_rgbd_b" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.090 0 0.038911"/>
+                <parent link = "base_link_${sufix}" />
+                <child link = "d_435_camera_${sufix}" />
+        </joint>
+
+        <joint name="j_lidar_b" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0 0 0.25"/>
+                <parent link = "base_link_${sufix}" />
+                <child link = "lidar_${sufix}" />
+        </joint>
+
+        <joint name="l1::j_l_m" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0 0 0"/>
+                <parent link = "l1::lLink_${sufix}" />
+                <child link = "l1::mLink_${sufix}" />
+
+        </joint>
+
+        <joint name="l1::j_m_f" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0153 0.019 0.0135"/>
+                <parent link = "l1::mLink_${sufix}" />
+                <child link = "l1::fLink_${sufix}" />
+        </joint>
+
+        <joint name="l2::j_l_m" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0 0 0"/>
+                <parent link = "l2::lLink_${sufix}" />
+                <child link = "l2::mLink_${sufix}" />
+        </joint>
+
+        <joint name="l2::j_m_f" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0153 0.019 0.0135"/>
+                <parent link = "l2::mLink_${sufix}" />
+                <child link = "l2::fLink_${sufix}" />
+        </joint>
+
+        <joint name="l3::j_l_m" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0 0 0"/>
+                <parent link = "l3::lLink_${sufix}" />
+                <child link = "l3::mLink_${sufix}" />
+
+        </joint>
+        <joint name="l3::j_m_f" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0153 0.019 0.0135"/>
+                <parent link = "l3::mLink_${sufix}" />
+                <child link = "l3::fLink_${sufix}" />
+        </joint>
+
+        <joint name="sa1::j_a_sb" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0 0 0"/>
+                <parent link = "sa1::aLink_${sufix}" />
+                <child link = "sa1::sbLink_${sufix}" />
+        </joint>
+
+        <joint name="sa2::j_a_sb" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0 0 0"/>
+                <parent link = "sa2::aLink_${sufix}" />
+                <child link = "sa2::sbLink_${sufix}" />
+        </joint>
+
+        <joint name="sa3::j_a_sb" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0 0 0"/>
+                <parent link = "sa3::aLink_${sufix}" />
+                <child link = "sa3::sbLink_${sufix}" />
+        </joint>
+
+        <joint name="wa2::j_a_wb" type="fixed">
+                <origin rpy = "0 1.5708 0" xyz = "0 0 0.0025"/>
+                <parent link = "wa2::aLink_${sufix}" />
+                <child link = "wa2::wbLink_${sufix}" />
+        </joint>
+
+        <joint name="wa3::j_a_wb" type="fixed">
+                <origin rpy = "0 1.5708 0" xyz = "0 0 0.0025"/>
+                <parent link = "wa3::aLink_${sufix}" />
+                <child link = "wa3::wbLink_${sufix}" />
+        </joint>
+  
+    <link name="AttachableLink_1_${sufix}"/>
+    <joint name="AttachableLinkJoint_1_${sufix}" type="fixed">
+        <parent link="AttachableLink_1_${sufix}"/>
+        <child link="base_link_${sufix}"/>
+        <origin rpy="2.0944 0 0" xyz="0.0 -0.0736 -0.0425"/>
+    </joint>
+  
+    <link name="AttachableLink_2_${sufix}"/>
+    <joint name="AttachableLinkJoint_2_${sufix}" type="fixed">
+        <parent link="base_link_${sufix}"/>
+        <child link="AttachableLink_2_${sufix}"/>
+        <origin rpy="2.0944 0 0" xyz="0.0 -0.0736 -0.0425"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>

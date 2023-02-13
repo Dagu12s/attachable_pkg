@@ -96,18 +96,18 @@
     </joint>
 
     <!-- VELOCITY JOINT SCREW ACTUATOR BASE 1 - CLOCKWISE SCREW ACTUATOR 1 - LEFT -->
-    <!--ign topic -t "/model/rm2_simple/joint/sa1::j_sb_cws/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <!--ign topic -t "/model/rm2_simple/joint/sa1::j_sb_cws/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"->
     <plugin filename="ignition-gazebo-joint-controller-system" name="ignition::gazebo::systems::JointController">
       <joint_name>sa1::j_sb_cws</joint_name>
       <initial_velocity>0.0</initial_velocity>
-    </plugin>
+    </plugin-->
 
     <!-- VELOCITY JOINT SCREW ACTUATOR BASE 1 - COUNTER CLOCKWISE SCREW ACTUATOR 1 - LEFT -->
-    <!--ign topic -t "/model/rm2_simple/joint/sa1::j_sb_ccws/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <!--ign topic -t "/model/rm2_simple/joint/sa1::j_sb_ccws/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"->
     <plugin filename="ignition-gazebo-joint-controller-system" name="ignition::gazebo::systems::JointController">
       <joint_name>sa1::j_sb_ccws</joint_name>
       <initial_velocity>0.0</initial_velocity>
-    </plugin>
+    </plugin-->
 
     <!-- INCLUDE SIMPLE LEG 2 - LEFT -->
     <include>
@@ -159,18 +159,18 @@
     </joint>
 
     <!-- VELOCITY JOINT SCREW ACTUATOR BASE 2 - CLOCKWISE SCREW ACTUATOR 2 - LEFT -->
-    <!--ign topic -t "/model/rm2_simple/joint/sa2::j_sb_cws/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <!--ign topic -t "/model/rm2_simple/joint/sa2::j_sb_cws/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"->
     <plugin filename="ignition-gazebo-joint-controller-system" name="ignition::gazebo::systems::JointController">
       <joint_name>sa2::j_sb_cws</joint_name>
       <initial_velocity>0.0</initial_velocity>
-    </plugin>
+    </plugin-->
 
     <!-- VELOCITY JOINT SCREW ACTUATOR BASE 2 - COUNTER CLOCKWISE SCREW ACTUATOR 2 - LEFT -->
-    <!--ign topic -t "/model/rm2_simple/joint/sa2::j_sb_ccws/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <!--ign topic -t "/model/rm2_simple/joint/sa2::j_sb_ccws/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"->
     <plugin filename="ignition-gazebo-joint-controller-system" name="ignition::gazebo::systems::JointController">
       <joint_name>sa2::j_sb_ccws</joint_name>
       <initial_velocity>0.0</initial_velocity>
-    </plugin>
+    </plugin-->
 
     <!-- INCLUDE SIMPLE LEG 3 - RIGHT -->
     <include>
@@ -365,21 +365,21 @@
     </plugin-->
 
     <!-- VELOCITY JOINT SCREW ACTUATOR BASE 3 - CLOCKWISE SCREW ACTUATOR 3 - RIGHT -->
-    <!--ign topic -t "/model/rm2_simple/joint/sa2::j_sb_cws/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <!--ign topic -t "/model/rm2_simple/joint/sa2::j_sb_cws/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"->
     <plugin filename="ignition-gazebo-joint-controller-system" name="ignition::gazebo::systems::JointController">
       <joint_name>sa2::j_sb_cws</joint_name>
       <initial_velocity>0.0</initial_velocity>
-    </plugin>
+    </plugin-->
 
     <!-- VELOCITY JOINT SCREW ACTUATOR BASE 3 - COUNTER CLOCKWISE SCREW ACTUATOR 3 - RIGHT -->
-    <!--ign topic -t "/model/rm2_simple/joint/sa2::j_sb_ccws/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <!--ign topic -t "/model/rm2_simple/joint/sa2::j_sb_ccws/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"->
     <plugin filename="ignition-gazebo-joint-controller-system" name="ignition::gazebo::systems::JointController">
       <joint_name>sa2::j_sb_ccws</joint_name>
       <initial_velocity>0.0</initial_velocity>
-    </plugin>
+    </plugin-->
 
     <!-- DIFFERENTIAL DRIVE -->
-    <!--ign topic -t "/cmd_vel" -m ignition.msgs.Twist -p "linear: {x: 0.5}, angular: {z: 0.05}"-->
+    <!--ign topic -t "/cmd_vel" -m ignition.msgs.Twist -p "linear: {x: 0.5}, angular: {z: 0.05}"->
     <plugin filename="libignition-gazebo-diff-drive-system.so" name="ignition::gazebo::systems::DiffDrive">
       <left_joint>wa2::j_wb_fw</left_joint>
       <left_joint>wa2::j_wb_bw</left_joint>
@@ -391,10 +391,10 @@
       <topic>/cmd_vel</topic>
       <frame_id>odom</frame_id>
       <child_frame_id>  AttachableLink_1_rm2_2</child_frame_id>
-    </plugin>
+    </plugin-->
 
     <!-- joint state publisher plugin -->
-    <plugin filename="libignition-gazebo-joint-state-publisher-system.so" name="ignition::gazebo::systems::JointStatePublisher"/>
+    <!--plugin filename="libignition-gazebo-joint-state-publisher-system.so" name="ignition::gazebo::systems::JointStatePublisher"/-->
 
   </model>
 </sdf>

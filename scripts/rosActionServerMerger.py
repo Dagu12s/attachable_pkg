@@ -144,10 +144,8 @@ class AttachableJointActionServer(Node):
 
                 feedback_msg = self.error
                 if (self.error == 0) and (self.urdf_update == True):
-                    print(1)
                     #Add model in URDF
-                    merge.addModel(self.filename, "body_1", "AttachableLink_1_body_1", "leg_1", "AttachableLink_1_leg_1") #"AttachableLink_1_body_1", "AttachableLink_1_leg_1" )#
-                    print(2)
+                    merge.addModel(self.filename, self.parentModel, self.parentLink, self.childModel, self.childLink)#(self.filename, "body_1", "AttachableLink_1_body_1", "leg_1", "AttachableLink_1_leg_1") #"AttachableLink_1_body_1", "AttachableLink_1_leg_1" )#
                     #Restart State Publisher with the new URDF
                     self.restartStatePublisher()
 

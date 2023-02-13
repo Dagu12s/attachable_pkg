@@ -27,7 +27,8 @@
         <plugin filename="ignition-gazebo-contact-system"
                 name="ignition::gazebo::systems::Contact">
         </plugin>
-
+        <plugin filename="/home/david/workspace/src/ign-gazebo/examples/plugin/system_plugin/build/libAttachableJoint.so" name="attachable_joint::AttachableJoint">
+        </plugin>
             <plugin filename="/home/david/workspace/src/ign-gazebo/examples/plugin/AttacherContact/build/libAttacherContact.so"
                     name="attacher_contact::AttacherContact">
                 <time>0.001</time>

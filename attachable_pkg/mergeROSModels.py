@@ -24,8 +24,9 @@ def addModel( filename, parentModel , parentLink, childModel, childLink):
     urdf_file = filename + ".urdf"
 
     parentSplit = parentLink.split("_")
-    childSplit = childModel.split("_")
-    model = childSplit[0]
+    childModelSplit = childModel.split("_")
+    childLinkSplit = childLink.split("_")
+    model = childModelSplit[0] + "_c_" + childLinkSplit[1]
     # modelsufix = childSplit[3]
 
     jointName = "AttachableJoint_" + parentModel + "_" +  parentLink + "_" + childModel + "_" + childLink
@@ -53,8 +54,12 @@ def removeModel( filename, parentModel , parentLink, childModel, childLink):
     xacro_file = filename + ".xacro"
     urdf_file = filename + ".urdf"
     
-    childSplit = childModel.split("_")
-    model = childSplit[0]
+    childModelSplit = childModel.split("_")
+    childLinkSplit = childLink.split("_")
+    model = childModelSplit[0] + "_c_" + childLinkSplit[1]
+
+    # childSplit = childModel.split("_")
+    # model = childSplit[0]
 
     jointName = "AttachableJoint_" + parentModel + "_" +  parentLink + "_" + childModel + "_" + childLink
 
@@ -260,7 +265,6 @@ def createURDF3( filename,parentModels, parentLinks,childModels, childLinks):
                      E.origin(rpy="0 0 0", xyz="0 0 0"))) 
 
 
-    print("Llega al final")
 
     with open(xacro_file,"wb") as open_file:
         open_file.write(etree.tostring(xacro_tree, pretty_print=True))

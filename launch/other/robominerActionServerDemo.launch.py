@@ -53,7 +53,7 @@ def generate_launch_description():
   
   return LaunchDescription([
     DeclareLaunchArgument('ign_args',
-        default_value=[os.path.join(pkg_attach, 'worlds', 'test_worldContactSensor2.sdf') +' --gui-config ' +
+        default_value=[os.path.join(pkg_attach, 'worlds', 'test_worldContactSensor3.sdf') +' --gui-config ' +
         os.path.join(pkg_attach, 'ign', 'gui.config'), ''], 
         description='Ignition Gazebo arguments'),
         ign_gazebo,
@@ -69,7 +69,7 @@ def generate_launch_description():
         package='attachable_pkg',
         executable='rosActionServerMerger.py',
         name='AttachableJointActionServer',
-        parameters=[{'urdf_update': True,
+        parameters=[{'urdf_update': False,
                      'urdf_file_name': pkg_attach2 +"/models/actual_model/actual_model"}],
         output='screen'
         ),
@@ -100,9 +100,9 @@ def generate_launch_description():
         arguments=[
           '-name', 'rm2_1',
           '-file',  os.path.join(pkg_rm2, 'models', 'rm2', 'rm2_sim', 'model.sdf'),
-          '-z', '0.18',
-          '-y', '0',
-          '-x', '1.25',
+            '-z', '0.18',
+            '-y', '0',
+            '-x', '0.55',
           ],
         output='screen',
           ),
@@ -111,10 +111,10 @@ def generate_launch_description():
           package='ros_ign_gazebo', executable='create',
           arguments=[
             '-name', 'rm2_2',
-            '-file',  os.path.join(pkg_rm2, 'models', 'rm2', 'rm2_sim', 'model.sdf'),
-            '-z', '0.18',
-            '-y', '0',
-            '-x', '0.55',
+            '-file',  os.path.join(pkg_rm2, 'models', 'rm2', 'rm2_sim2', 'model.sdf'),
+              '-z', '0.18',
+              '-y', '0',
+              '-x', '1.25',
             ],
           output='screen',
             )

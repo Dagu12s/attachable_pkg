@@ -5,7 +5,14 @@
   <!--xacro:include filename="../models/rm2_body.xacro" />
   <xacro:include filename="../models/rm2_leg.xacro" /-->
 
-  <xacro:include filename="$(find attachable_pkg)/models/xacro_files/rm2_body.xacro"/>
-  <xacro:include filename="$(find attachable_pkg)/models/xacro_files/rm2_leg.xacro" />
+  <xacro:include filename="$(find attachable_pkg)/models/xacro_files/rm2_body_p.xacro"/>
+  <xacro:include filename="$(find attachable_pkg)/models/xacro_files/rm2_body_c_1.xacro"/>
+  <xacro:include filename="$(find attachable_pkg)/models/xacro_files/rm2_body_c_2.xacro"/>
+  <xacro:include filename="$(find attachable_pkg)/models/xacro_files/rm2_body_c_3.xacro"/>
+  <xacro:include filename="$(find attachable_pkg)/models/xacro_files/rm2_leg_c_1.xacro" />
+  <xacro:include filename="$(find attachable_pkg)/models/xacro_files/rm2_p.xacro" />
+  <xacro:include filename="$(find attachable_pkg)/models/xacro_files/rm2_c_1.xacro" />
+  <xacro:include filename="$(find attachable_pkg)/models/xacro_files/rm2_c_2.xacro" />
+
 
 </robot>

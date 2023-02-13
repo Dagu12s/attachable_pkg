@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<robot name="body" xmlns:xacro="http://wiki.ros.org/xacro">
+<robot name="body_p" xmlns:xacro="http://wiki.ros.org/xacro">
 
-<xacro:macro name="body" params="sufix ">
+<xacro:macro name="body_p" params="sufix ">
 
   <link name='bodyBase_${sufix}'>    
       <visual>

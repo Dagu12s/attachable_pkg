@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot name="body_c_2" xmlns:xacro="http://wiki.ros.org/xacro">
+
+<xacro:macro name="body_c_2" params="sufix ">
+
+  <link name='bodyBase_${sufix}'>    
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://rm2_simulation/models/rm2_body/meshes/b_simple.dae"/>
+        </geometry>
+      </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!--mesh filename="package://rm2_simulation/models/rm2_body/meshes/body_collision.stl"/-->
+        <mesh filename="package://rm2_simulation/models/rm2_body/meshes/body_collision.stl"/>
+          <!--scale> 0.01 0.01 0.01</scale-->
+      </geometry>
+    </collision>
+    <inertial>
+        <mass value = "1.8" />
+        <inertia ixx="2.501" ixy="0" ixz="0" iyy="2.501" iyz="0.0" izz="5"/>
+    </inertial> 
+  </link>
+
+  <link name="AttachableLink_1_${sufix}"/>
+  <joint name="AttachableLinkJoint_1_${sufix}" type="fixed">
+    <parent link="bodyBase_${sufix}"/>
+    <child link="AttachableLink_1_${sufix}"/>
+    <origin rpy="0 0 0" xyz="0.0 0 0.085"/>
+  </joint>
+  
+  <link name="AttachableLink_2_${sufix}"/>
+  <joint name="AttachableLinkJoint_2_${sufix}" type="fixed">
+    <parent link="AttachableLink_2_${sufix}"/>
+    <child link="bodyBase_${sufix}"/>
+    <origin rpy="-2.0944 0 0" xyz="0.0 0.0736 -0.0425"/>
+  </joint>
+  
+  <link name="AttachableLink_3_${sufix}"/>
+  <joint name="AttachableLinkJoint_3_${sufix}" type="fixed">
+    <parent link="bodyBase_${sufix}"/>
+    <child link="AttachableLink_3_${sufix}"/>
+    <origin rpy="2.0944 0 0" xyz="0.0 -0.0736 -0.0425"/>
+  </joint>
+  
+</xacro:macro>
+
+</robot>

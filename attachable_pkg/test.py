@@ -36,7 +36,7 @@ from numpy import empty
 
 
 
-# filename = "../models/myfirst"
+filename = "../models/others/myfirst"
 # filename2 = "../models/urdfcreated"
 
 # modelsList = ["body" , "leg"]
@@ -47,12 +47,24 @@ from numpy import empty
 # merge.createURDF(filename, modelsList, modelNames, parentLinks, childLinks)
 
 
-# model = "leg"
-# modelNames =  "leg_1"
-# parentLinks = "AttachableLink_1_body_1"
-# childLinks = "AttachableLink_1_leg_1"
+model = "leg"
+modelNames =  "leg_1"
+parentLinks = "AttachableLink_1_body_1"
+childLinks = "AttachableLink_1_leg_1"
 
-# merge.addModel(filename, parentLinks, childLinks)
+merge.addModel(filename, parentLinks, childLinks)
+
+xacro_file = filename + ".xacro"
+urdf_file = filename + ".urdf"
+
+
+robot_description_config = xacro.process_file(xacro_file, pretty_print=True)
+
+robot_desc = robot_description_config.toprettyxml()
+
+with open(urdf_file ,"w") as open_file:
+    open_file.write(robot_desc)
+
 
 # model = "leg"
 # modelNames =  "leg2"
@@ -98,13 +110,13 @@ print("hola")
 # parentModels = ['body_1', 'body_1', 'body_1', 'body_2', 'body_2', 'body_3', 'body_3', 'body_4', 'body_4', 'body_5', 'body_5']
 # childModels = ['body_2', 'leg_1', 'body_3', 'leg_2', 'body_4', 'leg_3', 'leg_4', 'leg_5', 'body_5', 'leg_6', 'leg_7']
 
-parentLinks = ['AttachableLink_1', 'AttachableLink_2', 'AttachableLink_3', 'AttachableLink_2', 'AttachableLink_3', 'AttachableLink_1', 'AttachableLink_3', 'AttachableLink_2', 'AttachableLink_3', 'AttachableLink_2', 'AttachableLink_3']
-childLinks = ['AttachableLink_1', 'AttachableLink_1', 'AttachableLink_2', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1']
-parentModels = ['body_1', 'body_1', 'body_1', 'body_2', 'body_2', 'body_3', 'body_3', 'body_4', 'body_4', 'body_5', 'body_5']
-childModels = ['body_2', 'leg_1', 'body_3', 'leg_2', 'body_4', 'leg_3', 'leg_4', 'leg_5', 'body_5', 'leg_6', 'leg_7']
+# parentLinks = ['AttachableLink_1', 'AttachableLink_2', 'AttachableLink_3', 'AttachableLink_2', 'AttachableLink_3', 'AttachableLink_1', 'AttachableLink_3', 'AttachableLink_2', 'AttachableLink_3', 'AttachableLink_2', 'AttachableLink_3']
+# childLinks = ['AttachableLink_1', 'AttachableLink_1', 'AttachableLink_2', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1', 'AttachableLink_1']
+# parentModels = ['body_1', 'body_1', 'body_1', 'body_2', 'body_2', 'body_3', 'body_3', 'body_4', 'body_4', 'body_5', 'body_5']
+# childModels = ['body_2', 'leg_1', 'body_3', 'leg_2', 'body_4', 'leg_3', 'leg_4', 'leg_5', 'body_5', 'leg_6', 'leg_7']
 
 
-merge.createURDF3("actual_model", parentModels, parentLinks, childModels, childLinks)
+# merge.createURDF3("actual_model", parentModels, parentLinks, childModels, childLinks)
 
 # ================================================================================================================= 
 
